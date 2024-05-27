@@ -1,0 +1,12 @@
+.navbar-collapse {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente los elementos */
+  }
+  
+  
+  .navbar-nav .nav-item {
+    margin-right: 20px; 
+  }
+  .text-success{
+    margin-right: 100px; 
+  }

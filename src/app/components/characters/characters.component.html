@@ -1,0 +1,18 @@
+<div class="row ">
+  
+    <div class=" col">
+      
+        <input #termino type="text"(keyup)="buscar(termino.value)"
+        placeholder="Search a character " class="form-control m-5"
+        > 
+        
+    </div>
+   
+</div>
+@if(loading){
+    <app-loading class="m-5"></app-loading>
+  }
+  @if(!loading){
+    <app-tarjetas [items]="resultados" ></app-tarjetas>
+  }
+ 

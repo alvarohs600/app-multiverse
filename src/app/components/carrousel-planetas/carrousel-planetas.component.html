@@ -1,0 +1,28 @@
+
+<div class="container max-width">
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+         
+        <div class="custom-carousel" id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div *ngFor="let planeta of planetas; let isFirst = first" class="carousel-item" [class.active]="isFirst">
+                <img [src]="planeta" class="d-block w-100 " alt="Planeta">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+    <div class="col-4"></div>
+  </div>
+</div>
+
+
+

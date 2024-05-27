@@ -1,0 +1,26 @@
+.d-flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.ml-3 {
+  margin-left: 20rem;
+}
+.mr-3 {
+  margin-right: 20rem;
+}
+
+
+.img1, .img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.col-md-8 {
+  max-width: 100%;
+}
+
+.align-self-start {
+  align-self: start;
+}

@@ -1,0 +1,23 @@
+
+@if(loading){<app-loading></app-loading>}
+<br>
+@for (item of episodes; track item.name){
+<div class="card mb-3" >
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="../../../assets/img/logo_rick.jpg" class="card-img-top" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{item.name}}</h5>
+          <p class="card-text">{{item.air_date}}</p>
+          <p class="card-text">Episode: {{item.episode}}</p>
+        
+         <!-- <p class="card-text"><small class="text-body-secondary">Characters:{{item.characters}}</small></p> -->
+          
+          <p>{{item.url}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+}
