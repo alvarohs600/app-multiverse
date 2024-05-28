@@ -1,11 +1,11 @@
 import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword,signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
-import { Firestore, addDoc, collection, collectionData, deleteDoc, doc } from '@angular/fire/firestore';
+import { Firestore, addDoc, arrayRemove, arrayUnion, collection, collectionData, deleteDoc, doc, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
 import { ActivatedRouteSnapshot, Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, from, of } from 'rxjs';
 
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { Character } from '../../interfaces/character.interface';
 
 
@@ -25,9 +25,22 @@ export class RickMortyService {
 
   //--------------------Metodos de Autenticación Firebase-----------------------------------
 
-  //registrar usuario
-  registrar({email, password} : any) {
-    return createUserWithEmailAndPassword(this.auth, email, password);
+  //registrar usuario y crear documento en Firestore
+  registrar(email:string, password: string, nombre: string) {
+    return from(createUserWithEmailAndPassword(this.auth, email, password)).pipe(
+      switchMap((userCredential) => {
+        const user = {
+          id: userCredential.user?.uid,
+          email: email,
+          password: password,
+          nombre: nombre,
+          favoritos: [],
+          puntuacionMax: 0
+        };
+        const userDocRef = doc(this.firestore, `usuarios/${user.id}`);
+        return from(setDoc(userDocRef, user));
+      })
+    );
   }
   
   login({email, password} : any){
@@ -38,27 +51,50 @@ export class RickMortyService {
     return signOut(this.auth);
   }
 
-  //metodos para la bbdd firestore
+ //----------------------------- metodos para la bbdd firestore------------------------------------------------------------------------
 
-  addFavorito( character : Character){
-
-    const characterRef = collection(this.firestore, 'favoritos');
-    return addDoc(characterRef, character);
-  }
-
-  deleteFavorito( character : Character){
-
-    const tareaDocRef = doc(this.firestore, `favoritos/${character.id}`);
-    return deleteDoc ( tareaDocRef);
-  }
-
-  getFavoritos() : Observable <Character[]>{
-    const characterRef = collection (this.firestore, 'favoritos');
-    return collectionData(characterRef,{idField: 'id'}) as Observable<Character[]>
+  // Agregar favorito al documento del usuario
+  addFavorito(character: Character) {
+    const user = this.auth.currentUser;
+    if (!user) {
+      throw new Error('Usuario no autenticado');
+    }
+    const userDocRef = doc(this.firestore, `usuarios/${user.uid}`);
+    return from(updateDoc(userDocRef, { favoritos: arrayUnion(character) }));
   }
 
 
-   //metodos para el consumo de API
+  // Eliminar favorito del documento del usuario
+  removeFavorito(character: Character) {
+    const user = this.auth.currentUser;
+    if (!user) {
+      throw new Error('Usuario no autenticado');
+    }
+    const userDocRef = doc(this.firestore, `usuarios/${user.uid}`);
+    return from(updateDoc(userDocRef, { favoritos: arrayRemove(character) }));
+  }
+
+// Obtener todos los favoritos del usuario
+getFavoritos() {
+  const user = this.auth.currentUser;
+  if (!user) {
+    throw new Error('Usuario no autenticado');
+  }
+  const userDocRef = doc(this.firestore, `usuarios/${user.uid}`);
+  return from(getDoc(userDocRef)).pipe(
+    switchMap((resp) => {
+      const data = resp.data();
+      if (data && data['favoritos']) {
+        return of(data['favoritos']);
+      } else {
+        return of([]);
+      }
+    })
+  );
+}
+
+
+   //-------------------------------------Metodos para el consumo de API--------------------------------------------------------
   getQuery( query : string ) {
     const url=`https://rickandmortyapi.com/api/${ query }`;
    return this.http.get(url);

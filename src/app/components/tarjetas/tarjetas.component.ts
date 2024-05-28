@@ -3,12 +3,17 @@ import { Firestore } from '@angular/fire/firestore';
 import { Router} from '@angular/router';
 import { RickMortyService } from '../shared/services/rick-morty.service';
 import { Character } from '../interfaces/character.interface';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-tarjetas',
   standalone: true,
   imports: [
+    FormsModule,
+    CommonModule,
+    
     
 
   ],
@@ -26,8 +31,18 @@ export class TarjetasComponent {
     private firestore: Firestore,
     private rickyMortyService : RickMortyService,
 
-  ){
+  ){}
 
+  addFavorite(event: Event, character: Character) {
+    event.stopPropagation(); // Evita que el clic en el botón dispare también el clic en la tarjeta
+    this.rickyMortyService.addFavorito(character).subscribe({
+      next: () => {
+        character.isFavorite = true; // Actualiza el estado localmente
+      },
+      error: (error : any) => {
+        console.error('Error al añadir a favoritos:', error);
+      }
+    });
   }
 
   
@@ -37,31 +52,7 @@ export class TarjetasComponent {
     this.router.navigate(['/characterDetails/', personajeId]);
    }
 
-   //metofo para añadir a favoritos
-   toggleFavorite(character: Character, event : Event){
-    event.stopPropagation(); // Evita que el evento click en el botón propague al contenedor
-    character.isFavorite = !character.isFavorite;
-    if (character.isFavorite) {
-      this.rickyMortyService.addFavorito(character)
-        .then(() => {
-          console.log('Personaje añadido a favoritos:', character);
-        })
-        .catch((error: any) => {
-          console.error('Error al añadir a favoritos:', error);
-        });
+  
    
-
-   } else if(!character.isFavorite){
-    this.rickyMortyService.deleteFavorito(character)
-      .then(() => {
-        console.log('Personaje eliminado de favoritos:', character);
-        
-      } )
-      .catch((error : any) => {
-        console.log('Error al eliminar el personaje:', error);
-      })
-      
-   }
-
 }
-}
+

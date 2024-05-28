@@ -1,85 +1,23 @@
-<!--
-<div class="limiter animated fadeIn">
-    @if(errorMensaje){
-        <div class="alert alert-danger">{{errorMensaje}}</div>
-    }
-    <div class="container-login100">
-        <div class="wrap-login100 p-t-50 p-b-90">
-            <form class="login100-form validate-form flex-sb flex-w"
-            (ngSubmit)="onSubmit(registroForm)"
-            #registroForm="ngForm">
-
-                <span class="login100-form-title p-b-51">
-                    Create new account
-                </span>
-
-               @if(registroForm.submitted && registroForm.controls['email']){ 
-                <span class="text-danger animated fadeIn">Mail is required.</span>}
-                <div class="wrap-input100 m-b-18">
-                    <input class="input100" 
-                           type="email" 
-                           name="email" 
-                           [(ngModel)]="usuario.email"
-                           minlength="6"
-                           required
-                           email 
-                           placeholder="Email">
-
-                    <span class="focus-input100"></span>
-                </div>
-
-
-                
-                @if(registroForm.submitted && registroForm.controls['password']){ 
-                    <span class="text-danger animated fadeIn">The password is required with a minimum of 6 characters.</span>}
-                <div class="wrap-input100 m-b-18" >
-                    <input class="input100"
-                           type="password" 
-                           name="password" 
-                           [(ngModel)]="usuario.password"
-                           placeholder="Password">
-                    <span class="focus-input100"></span>
-                </div>
-                
-                <div class="flex-sb-m w-full p-t-3 p-b-24">
-                    <div class="contact100-form-checkbox">
-                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                        <label class="label-checkbox100" for="ckb1">
-                            Remeber my account
-                        </label>
-                    </div>
-
-                    <div>
-                        <a routerLink="/login" class="txt1">
-                            do you have a count?
-                        </a>
-                    </div>
-                </div>
-
-                <div class="container-login100-form-btn m-t-17">
-                    <button class="login100-form-btn" type="submit">
-                        Create acount
-                    </button>
-                </div>
-
-            </form>
-        </div>
-    </div>
-</div>
-
--->
 @if (error) {
     <div class="alert alert-danger animated fadeIn">
-        <h3> Error</h3>
-        <p>{{errorMensaje}}</p>
+      <h3>Error</h3>
+      <p>{{errorMensaje}}</p>
     </div>
-    }
-<div class="letras" >
+  }
+  <div class="letras">
     <img src="../../../assets/img/Multiverse.gif" alt="Mi logo">
   </div>
-<div class="registro-container mt-5">
+  <div class="registro-container mt-5">
     <h2>Register new user</h2>
     <form [formGroup]="formReg" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" formControlName="nombre" required />
+        <div *ngIf="formReg.get('nombre')?.invalid && (formReg.get('nombre')?.dirty || formReg.get('nombre')?.touched)">
+          <small class="error" *ngIf="formReg.get('nombre')?.errors?.['required']">Nombre is required.</small>
+          <small class="error" *ngIf="formReg.get('nombre')?.errors?.['minlength']">The nombre must be at least 3 characters.</small>
+        </div>
+      </div>
       <div class="form-group">
         <label for="email">Email</label>
         <input id="email" type="email" formControlName="email" required />
@@ -96,7 +34,7 @@
           <small class="error" *ngIf="formReg.get('password')?.errors?.['minlength']">The password must be at least 6 characters.</small>
         </div>
       </div>
-      <div >
+      <div>
         <a class="mb5" routerLink="/login">Login</a>
       </div>
       <button type="submit" class="btn btn-primary" [disabled]="formReg.invalid">Check in</button>

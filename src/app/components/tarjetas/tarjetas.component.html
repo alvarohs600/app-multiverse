@@ -1,26 +1,19 @@
-<div class="row row-cols-1 row-cols-md-3 g-4 animated fadeIn" >
-    @for (item of items; track item.name){
+<div class="row row-cols-1 row-cols-md-3 g-4 animated fadeIn">
+  <div *ngFor="let item of items;">
     <div (click)="verPersonaje(item)" class="col">
-     
-        <div class="card h-100">
+      <div class="card h-100">
         <img [src]="item.image" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{item.name}}</h5>
           <p class="card-text">{{item.species}}</p>
-          <small> {{item.gender}}</small>
+          <small>{{item.gender}}</small>
           <div class="card-column">
-            <button class="btn btn-light" (click)="toggleFavorite(item, $event)">
+            <button class="btn btn-light" (click)="addFavorite($event, item)">
               <i [class]="item.isFavorite ? 'fas fa-heart text-danger' : 'far fa-heart'"></i>
             </button>
           </div>
-         
-        
         </div>
-        
-    
       </div>
-    
     </div>
-    }
-
+  </div>
 </div>

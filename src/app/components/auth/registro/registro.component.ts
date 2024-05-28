@@ -38,7 +38,8 @@ constructor(
    
    this.formReg= new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)])
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    nombre: new FormControl('', [Validators.required, Validators.minLength(3)])
 
    })
 
@@ -47,7 +48,7 @@ constructor(
 }
 
   ngOnInit(): void {
-   this.usuario=new Usuario();
+  
    
     
   }
@@ -55,17 +56,20 @@ constructor(
 
 
  //metodo que se lanza cuando enviamos el formulario.
-  onSubmit() {
-    if (this.formReg.valid) {
-     this.service.registrar(this.formReg.value)
-      .then(resp => {
+ onSubmit() {
+  if (this.formReg.valid) {
+    const { email, password, nombre } = this.formReg.value;
+    this.service.registrar(email, password, nombre).subscribe({
+      next: () => {
+        console.log('Usuario registrado y creado en Firestore');
         this.router.navigate(['/login']);
-      })
-      .catch(errorServ=>{
-        this.error=true;
-        this.errorMensaje= errorServ;
-      });
-    }
+      },
+      error: (error) => {
+        console.error('Error al registrar usuario: ', error);
+        //manejo de errores para mostrar mensajes en la UI
+      }
+    });
+  }
 }
 
 }
