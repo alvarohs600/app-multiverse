@@ -1,23 +1,32 @@
-
 @if(loading){<app-loading></app-loading>}
 <br>
-@for (item of episodes; track item.name){
-<div class="card mb-3" >
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="../../../assets/img/logo_rick.jpg" class="card-img-top" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">{{item.name}}</h5>
-          <p class="card-text">{{item.air_date}}</p>
-          <p class="card-text">Episode: {{item.episode}}</p>
-        
-         <!-- <p class="card-text"><small class="text-body-secondary">Characters:{{item.characters}}</small></p> -->
-          
-          <p>{{item.url}}</p>
-        </div>
-      </div>
+<div class="container m">
+  <div class="col-md-12 text-center">
+    <h2 class="d-flex justify-content-center mb-5">Seasons:</h2>
+  </div>
+  <div class="d-flex justify-content-center align-items-start mb-5">
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+      <button (click)="showSeason('1')" type="button" class="btn btn-success">Season 1</button>
+      <button (click)="showSeason('2')" type="button" class="btn btn-success">Season 2</button>
+      <button (click)="showSeason('3')" type="button" class="btn btn-success">Season 3</button>
     </div>
   </div>
+
+  @if(image){<div class=" container-img" >
+    <img src="../../../assets/img/rick.jpg" alt="rick" class="tamano">
+  </div>
 }
+  <div class="d-flex justify-content-center align-items-start mt-2">
+  
+
+    @if(activeComponent==='1'){
+      <app-seson1></app-seson1>
+    }
+    @if(activeComponent==='2'){
+      <app-seson2></app-seson2>
+    }
+    @if(activeComponent==='3'){
+      <app-seson3></app-seson3>
+    }
+  </div>
+</div>

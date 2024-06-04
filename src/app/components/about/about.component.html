@@ -1,40 +1,7 @@
-<h1><i class="fa-regular fa-user"></i> About me:</h1>
-
-<div class="d-flex justify-content-start">
-  <div class="card mt-10">
-    <div class="row g-0">
-      <div class="col-md-12">
-        <img src="../../../assets/img/me.jpg" class="img" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h3 class="card-title">Álvaro Hontoria Sánchez</h3>
-          <p class="card-text">Dimension: Earth</p>
-          <p class="card-text">Type: Human</p>
-          <p class="card-text">Studies: Mobile app development and Arts career</p>
-          <p class="card-text"><small class="text-body-secondary">March 6, 1991</small></p>
-        </div>
-      </div>
-    </div>
-    <button class="btn btn-dark btn-lg mb-1 w-100" (click)="handlerClick1()">
-      
-     <i class="fa-solid fa-magnifying-glass"></i> Details
-    </button>
-  </div>
-
-  <div *ngIf="details1" class="ml-3 align-self-start">
-    <app-me-details></app-me-details>
-  </div>
-</div>
-
-<br>
-<br>
-<br>
-
 <h1><i class="fa-solid fa-bars-progress"></i> About the project:</h1>
 
 <div class="d-flex justify-content-start">
-  <div class="card mt-10">
+  <div class="card mt-10 col-md-6">
     <div class="row g-0">
       <div class="col-md-12">
         <img src="../../../assets/img/poryectoo.png" class="img1" alt="...">
@@ -56,7 +23,43 @@
     </button>
   </div>
 
-  <div *ngIf="details" class="ml-3 align-self-start">
+  <div *ngIf="details" class="ml-3 align-self-start col-md-6"> 
     <app-proyect-details></app-proyect-details>
   </div>
 </div>
+
+<br>
+<br>
+<br>
+
+<h1><i class="fa-regular fa-user"></i> About me:</h1>
+
+<div class="d-flex justify-content-start">
+  <div class="card mt-10 col-md-6"> 
+    <div class="row g-0">
+      <div class="col-md-12">
+        <img src="../../../assets/img/me.jpg" class="img" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h3 class="card-title">Álvaro Hontoria Sánchez</h3>
+          <p class="card-text">Dimension: Earth</p>
+          <p class="card-text">Type: Human</p>
+          <p class="card-text">Studies: Mobile app development and Arts</p>
+          <p class="card-text"><small class="text-body-secondary">March 6, 1991</small></p>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-dark btn-lg mb-1 w-100" (click)="handlerClick1()">
+      
+     <i class="fa-solid fa-magnifying-glass"></i> Details
+    </button>
+  </div>
+
+  <div *ngIf="details1" class="ml-3 align-self-start col-md-6"> 
+    <app-me-details></app-me-details>
+  </div>
+</div>
+
+
+

@@ -9,6 +9,7 @@ import { Usuario } from '../../../model/usuario.model';
 
 
 
+
 @Component({
   selector: 'app-registro',
   standalone: true,
@@ -32,7 +33,9 @@ export class RegistroComponent implements OnInit {
 
 constructor(
   private service: RickMortyService,
-  private  router : Router){
+  private  router : Router,
+  
+){
    
 
    
@@ -49,7 +52,7 @@ constructor(
 
   ngOnInit(): void {
   
-   
+
     
   }
 

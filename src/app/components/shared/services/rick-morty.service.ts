@@ -13,7 +13,7 @@ import { Character } from '../../interfaces/character.interface';
   providedIn: 'root'
 })
 export class RickMortyService {
-
+private loggedIn: boolean= false;
   
   constructor(
      private http: HttpClient,
@@ -42,13 +42,19 @@ export class RickMortyService {
       })
     );
   }
-  
+  //metodo para hacer login
   login({email, password} : any){
+    this.loggedIn=true;
     return signInWithEmailAndPassword( this.auth, email, password);
   }
-
+  //metodo para hacer logout
   logOut(){
+    this.loggedIn=false;
     return signOut(this.auth);
+  }
+  //metodo para comprobar si un usuario esta logeado
+  isLoggedIn():boolean{
+    return this.loggedIn;
   }
 
  //----------------------------- metodos para la bbdd firestore------------------------------------------------------------------------
@@ -118,21 +124,18 @@ getFavoritos() {
     return this.getQuery(`character/${id}`);
   };
 
-  getCharacterByPage(pageNum : number): any{
-    
-
-  }
+  
 
   getEpisodes(){
     return this.getQuery('episode');
   }
 
-
-   //metodo para el breadcrumbs
-  getBreadcrumbs(): Observable<string[]> {
-    const breadcrumbs: string[] = ['Home', 'Characters', 'Locations', 'Episodes'];
-    return of(breadcrumbs);
+  getSesion(ids: number [] ){
+    
+    return this.getQuery(`episode/${ids}`)
   }
+
+
    
     
     

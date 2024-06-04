@@ -5,8 +5,8 @@
         <img [src]="item.image" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{item.name}}</h5>
-          <p class="card-text">{{item.species}}</p>
-          <small>{{item.gender}}</small>
+          <p class="card-text"> Specie: {{item.species}}</p>
+          <small> Gender: {{item.gender}}</small>
           <div class="card-column">
             <button class="btn btn-light" (click)="addFavorite($event, item)">
               <i [class]="item.isFavorite ? 'fas fa-heart text-danger' : 'far fa-heart'"></i>

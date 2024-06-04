@@ -45,8 +45,9 @@ export class CharacterDetailsComponent {
         });
   }
 
+  //metodo para volver a la pagina anterior
   goBack():void {
-    //para volver atras.
+    
     this.location.back();
   }
 

@@ -34,76 +34,17 @@ type RequestInfo = {
   templateUrl: './characters.component.html',
   
 })
-export class CharactersComponent implements OnInit{
+export class CharactersComponent {
 
   resultados: Character [] = [];
   loading: boolean = false;
-  info : RequestInfo = {
-    next: '',
-  };
-  showGoUpButton= false;
-  private pageNum= 1;
-  private query: string = '';
-  private hideScrollHeight= 200;
-  private showScrollHeight= 500;
-
-  //lo guardamos en un observable
-  public characterResoult$!: Observable<Character>;
+ 
 
   constructor(private service: RickMortyService,
-    @Inject(DOCUMENT) private document: Document,
+    
   ){}
 
-  ngOnInit(): void {
-    this.getDataFromService;
-  }
 
-  /*@HostListener es un decorador que declara un evento DOM para escuchar y proporcionar
-   un metodo de controlador para ejecutarse cuando se produce ese evento.
-   */
-  @HostListener('window:scroll',[])
-  windowScroll(): void{
-
-    const YoffSet = window.pageYOffset;
-    if((YoffSet || this.document.documentElement.scrollTop
-      || this.document.body.scrollTop) > this.showScrollHeight){
-        this.showGoUpButton = true;
-      }else if(this.showGoUpButton && ( YoffSet || this.document.documentElement.scrollTop || this.document.body.scrollTop ) <
-    this.hideScrollHeight){
-      this.showGoUpButton= false;
-    }
-
-  }
-  scrollDown(): void{
-
-    if(this.info.next){
-      this.pageNum++;
-      this.getDataFromService();
-    }
-  }
-
-  scrollTop(): void {
-    this.document.body.scrollTop=0; //para Safari
-    this.document.documentElement.scrollTop= 0; //para el resto de navegadores
-  }
-
-  private getDataFromService(): void {
-    this.service.searchPersonaje(this.query, this.pageNum)
-    .pipe(take(1))
-    .subscribe((datos: any) => {
-
-     if(datos?.results.length){
-
-      const { info, results } = datos;
-      this.resultados = [ ...this.resultados, ...results];
-      this.info= info;
-
-     } else {
-      this.resultados= [];
-       }
-      
-    });
-  }
 
   buscar(termino: string){
     this.loading= true;

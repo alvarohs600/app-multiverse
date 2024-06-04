@@ -1,0 +1,36 @@
+<div class="d-flex flex-column align-items-center">
+    <button (click)="toggleVideo()" class="btn btn-success d-flex align-items-center mt-5 m">
+        <i class="fas fa-play me-2"></i> Trailer
+    </button>
+    
+    @if(showVideo) {
+        <div class="video-container mt-4">
+            <video controls>
+                <source [src]="pathVideo" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    }
+    
+    <div class="card-container mt-4">
+        @for (item of items; track $index) {
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img [src]="pathImg" class="card-img-top" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Title: {{item.name}}</h5>
+                            <p class="card-text">{{item.air_date}}</p>
+                            <p class="card-text">Episode: {{item.episode}}</p>
+                            <p class="card-text">
+                                <small class="text-body-secondary">{{item.characters.length}} characters appear in this episode</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -8,6 +8,7 @@ import { Usuario } from '../../../model/usuario.model';
 
 
 
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -26,11 +27,14 @@ export class LoginComponent implements OnInit {
   formReg: FormGroup;
   errorMensaje: string = '';
   usuario: Usuario = new Usuario;
+  variable : boolean = false;
+  
   
 
   constructor(
     private service: RickMortyService,
     private router: Router,
+   
   ){
 
     this.formReg= new FormGroup({
@@ -40,6 +44,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+   
   }
     
    //metoo que se lanza cuando enviamos el formulario

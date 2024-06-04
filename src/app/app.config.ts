@@ -10,7 +10,6 @@ import { RickMortyService } from './components/shared/services/rick-morty.servic
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { firebaseConfig } from './firebase/firebase.config';
-import { ReactiveFormsModule } from '@angular/forms';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 

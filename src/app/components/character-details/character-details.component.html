@@ -12,13 +12,14 @@
                 <div class="header">
                     <h2> {{character.name}}</h2>
                   
-                    <h3 class="text-muted">Specie:  <small>{{character.species}}</small> </h3>
-                    <h3 class="text-muted">Gender: <small>{{character.gender}}</small></h3>
-                    <h4 class="text-muted">Status: <small>{{character.status}}
-                    </small> </h4>
-                    
-                    
+                    <h3 class="text-muted"><small>Specie:</small>{{character.species}} </h3>
+                    <h3 class="text-muted"><small>Gender:</small> {{character.gender}}</h3>
+                    <h4 class="text-muted"><small>Status:</small> {{character.status}} </h4>
                     <h5 class="text-muted">Origin: {{character.origin.name}}</h5>
+                    <h5 class="text-muted">Type: {{character.type}}</h5>
+                    
+                    
+                    <h5 class="text-muted">Last know location: {{character.location.name}}</h5>
                     <h5 class="text-muted"> {{character.name}} appears in {{character.episode.length}} episodes</h5>
                     <small class="text-muted">{{character.created | date}}</small>
                     <br>

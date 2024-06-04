@@ -1,4 +1,4 @@
-import { Component, Inject, Input} from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { Router} from '@angular/router';
 import { RickMortyService } from '../shared/services/rick-morty.service';
@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     FormsModule,
     CommonModule,
-    
+
     
 
   ],

@@ -1,0 +1,35 @@
+
+<p class="title">Favorites</p>
+
+
+<div *ngIf="favoritos.length > 0; else noFavoritos">
+    <div class="row row-cols-1 row-cols-md-3 g-4 animated fadeIn">
+      <div *ngFor="let item of favoritos;">
+        <div class="col">
+          <div class="card h-100">
+            <img [src]="item.image" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{item.name}}</h5>
+              <p class="card-text">Specie: {{item.species}}</p>
+              <small>Gender: {{item.gender}}</small>
+              <div class="card-column">
+                <i class="fa fa-heart text-danger" aria-hidden="true"></i>
+              </div>
+              <div class="button-container">
+                <button class="remove-button" (click)="eliminarFavorito(item)">
+                    <i class="fas fa-trash"></i> Remove
+                  </button>
+                  <button class="details-button" (click)="verPersonaje(item)">
+                    <i class="fas fa-info-circle"></i> Details
+                  </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noFavoritos>
+    <p>No hay ningún elemento guardado en favoritos.</p>
+  </ng-template>

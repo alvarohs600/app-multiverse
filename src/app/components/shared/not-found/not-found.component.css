@@ -1,0 +1,16 @@
+.container{
+    width: 100%;
+    height: auto;
+}
+
+.center-button {
+    background-color: darkviolet;
+    border-color: darkviolet;
+    width: 300px; 
+    color: white;
+  }
+  
+  .center-button:hover {
+    background-color: rgb(169, 57, 217);
+    border-color: rgb(125, 47, 159);
+  }

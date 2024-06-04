@@ -11,7 +11,7 @@
     <h2>Register new user</h2>
     <form [formGroup]="formReg" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="nombre">Nombre</label>
+        <label for="nombre">Name</label>
         <input id="nombre" type="text" formControlName="nombre" required />
         <div *ngIf="formReg.get('nombre')?.invalid && (formReg.get('nombre')?.dirty || formReg.get('nombre')?.touched)">
           <small class="error" *ngIf="formReg.get('nombre')?.errors?.['required']">Nombre is required.</small>

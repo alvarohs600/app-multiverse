@@ -1,0 +1,20 @@
+.btn-success {
+    background-color: #42e368; 
+    border-color: #36944c;
+}
+
+.btn-success:hover {
+    background-color: #90f8a7; 
+    border-color: #36944c;
+}
+
+.container-img {
+    width: 50%; 
+    margin: 0 auto; 
+    text-align: center; 
+}
+
+.tamano {
+    width: 100%; 
+    height: auto; 
+}

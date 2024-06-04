@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink} from '@angular/router';
 import { RickMortyService } from '../services/rick-morty.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -12,14 +13,20 @@ import { RickMortyService } from '../services/rick-morty.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+
+  showNavbar=true;
   constructor(
     private service: RickMortyService,
     private router : Router,
+   
   ){
 
     
 
+  }
+  ngOnInit(){
+   
   }
   onclick(){
     this.service.logOut()

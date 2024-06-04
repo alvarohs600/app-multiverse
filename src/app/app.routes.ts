@@ -7,35 +7,24 @@ import { AboutComponent } from './components/about/about.component';
 import { CharacterDetailsComponent } from './components/character-details/character-details.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegistroComponent } from './components/auth/registro/registro.component';
-import {canActivate, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
+import { FavoritesComponent } from './components/favorites/favorites.component';
+import { NotFoundComponent } from './components/shared/not-found/not-found.component';
+import { loginGuardGuard } from './components/guards/login-guard.guard';
+
+
 
 export const routes: Routes = [
 
-    {path:'', pathMatch: 'full', redirectTo: '/home'}, 
-    //funcion anonima para redirigir a registro si no estamos logeados
-    {path: 'home', component: HomeComponent,
-     ...canActivate(()=> redirectUnauthorizedTo(['/login'])) },
-
-    {path: 'characters', component: CharactersComponent,
-    ...canActivate(()=> redirectUnauthorizedTo(['/login'])) },
-
-    {path: 'locations', component: LocationsComponent,
-    ...canActivate(()=> redirectUnauthorizedTo(['/login'])) },
-
-    {path: 'episodes', component: EpisodesComponent,
-    ...canActivate(()=> redirectUnauthorizedTo(['/login'])) },
-
-    {path: 'about', component: AboutComponent,
-    ...canActivate(()=> redirectUnauthorizedTo(['/login'])) },
-
-    {path: 'characterDetails/:id', component: CharacterDetailsComponent,
-    ...canActivate(()=> redirectUnauthorizedTo(['/login'])) },
-
-    {path: 'login', component: LoginComponent},
-
-    {path: 'registro', component: RegistroComponent},
-   
-    
-    // cualquier otra ruta nos redirecciona al login
-    {path: '**', pathMatch: 'full', redirectTo: '/login'},
+    { path: '', pathMatch: 'full', redirectTo: '/login' },
+  { path: 'home', component: HomeComponent, canActivate: [loginGuardGuard] },
+  { path: 'characters', component: CharactersComponent, canActivate: [loginGuardGuard] },
+  { path: 'favorites', component: FavoritesComponent, canActivate: [loginGuardGuard] },
+  { path: 'locations', component: LocationsComponent, canActivate: [loginGuardGuard] },
+  { path: 'episodes', component: EpisodesComponent, canActivate: [loginGuardGuard] },
+  { path: 'about', component: AboutComponent, canActivate: [loginGuardGuard] },
+  { path: 'characterDetails/:id', component: CharacterDetailsComponent, canActivate: [loginGuardGuard] },
+  { path: 'not-found', component: NotFoundComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'registro', component: RegistroComponent },
+  { path: '**', pathMatch:'full', redirectTo: '/login' }
 ];

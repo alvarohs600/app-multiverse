@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
-import { Router, RouterLink, RouterOutlet, NavigationEnd } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink, RouterOutlet, NavigationEnd, RouterLinkActive, ActivatedRoute } from '@angular/router';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { RickMortyService } from './components/shared/services/rick-morty.service';
+
+
 
 
 @Component({
@@ -15,28 +17,46 @@ import { RickMortyService } from './components/shared/services/rick-morty.servic
     RouterLink,
     NavbarComponent,
     AsyncPipe,
+    RouterLinkActive,
+    
   
   ],
     
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'multiversoR';
-  isnotLogin : boolean= true;
+  showNavbar : boolean= true;
+  
 
-  constructor(private router : Router){
+  constructor(private router : Router, private service: RickMortyService,
+  ){
 
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.checkRoute(event.url);
+    this.router.events.subscribe(event=> {
+      if( event instanceof NavigationEnd){
+        this.checkRoute(event.url)
       }
-    });
+    })
+
+ 
+    
+  }
+  ngOnInit() {
+   
+ 
   }
 
+  
+  //metodo para verificar ruta actual y saber si el usuario esta loggeado o no.
   checkRoute(url: string): void {
-    this.isnotLogin = !(url === '/login' || url === '/registro');
+    console.log(url)
+    console.log(this.service.isLoggedIn());
+    console.log( ((url != '/login' && url != '/registro') && this.service.isLoggedIn() ));
+    this.showNavbar = ((url != '/' && url != '/registro') && this.service.isLoggedIn() );
   }
+
+ 
  
 
 }
