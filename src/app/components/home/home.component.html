@@ -7,5 +7,8 @@
 
 <app-tarjetas [items]="resultados"></app-tarjetas>
 
+@if(showGoUpButton){
 
+  <button (click)="scrollTop()" class="goUp">Up</button>
+}
 

@@ -53,13 +53,15 @@ export class HomeComponent implements OnInit {
     if (isBottom && this.info.next) {
       this.scrollDown();
     }
+    //para mostrar/ocultar el boton  segun la posición del scroll
+    this.showGoUpButton=window.scrollY > this.showScrollHeight;
   }
 
   scrollDown(): void {
     this.pageNum++;
     this.getDataFromService();
   }
-
+ //metodo para subir al principio de la pantalla
   scrollTop(): void {
     this.document.body.scrollTop = 0; // Para Safari
     this.document.documentElement.scrollTop = 0; // Para el resto de navegadores
