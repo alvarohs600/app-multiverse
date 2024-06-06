@@ -3,11 +3,17 @@
     bottom: 20px;
     right: 20px;
     display: block;
-    background-color: #62e651;
+    background-color: #af51e6;
     color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     z-index: 1000;
+  }
+
+  .search-input {
+    width: 300px; 
+    margin: 20px auto; 
+    
   }

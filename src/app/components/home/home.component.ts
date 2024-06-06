@@ -28,13 +28,14 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   resultados: Character[] = [];
+  resulBusqueda: Character[] = [];
   loading: boolean = false;
   info: { next: string | null } = { next: null }; // Corrige la definición de 'info'
   showGoUpButton = false;
   private pageNum = 1;
   private query: string = '';
-  private hideScrollHeight = 200;
   private showScrollHeight = 500;
+  notFound=false;
 
   constructor(
     private service: RickMortyService,
@@ -85,7 +86,10 @@ export class HomeComponent implements OnInit {
   buscar(termino: string) {
     this.loading = true;
     this.service.searchPersonaje(termino).subscribe((datos: any) => {
-      this.resultados = datos.results;
+      this.resulBusqueda = datos.results;
+      if( termino.length > 3 && this.resulBusqueda.length===0){
+          this.notFound=true;
+      }
       this.loading = false;
     });
   }

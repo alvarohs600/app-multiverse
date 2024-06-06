@@ -1,5 +1,5 @@
 
-<p class="title">Favorites</p>
+<p class="title">You have {{favoritos.length}} characters as favorites. </p>
 
 
 <div *ngIf="favoritos.length > 0; else noFavoritos">
@@ -31,5 +31,7 @@
   </div>
   
   <ng-template #noFavoritos>
-    <p>No hay ningún elemento guardado en favoritos.</p>
+    <div class="row animated fadeIn full-width">
+    <img src="../../../assets/img/nofavs.gif" alt="no-Favorites">
+   </div>
   </ng-template>

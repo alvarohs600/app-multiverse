@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { CharactersComponent } from './components/characters/characters.component';
 import { LocationsComponent } from './components/locations/locations.component';
 import { EpisodesComponent } from './components/episodes/episodes.component';
 import { AboutComponent } from './components/about/about.component';
@@ -17,7 +16,6 @@ export const routes: Routes = [
 
     { path: '', pathMatch: 'full', redirectTo: '/login' },
   { path: 'home', component: HomeComponent, canActivate: [loginGuardGuard] },
-  { path: 'characters', component: CharactersComponent, canActivate: [loginGuardGuard] },
   { path: 'favorites', component: FavoritesComponent, canActivate: [loginGuardGuard] },
   { path: 'locations', component: LocationsComponent, canActivate: [loginGuardGuard] },
   { path: 'episodes', component: EpisodesComponent, canActivate: [loginGuardGuard] },

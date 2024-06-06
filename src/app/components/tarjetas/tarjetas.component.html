@@ -4,9 +4,19 @@
       <div class="card h-100">
         <img [src]="item.image" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">{{item.name}}</h5>
-          <p class="card-text"> Specie: {{item.species}}</p>
-          <small> Gender: {{item.gender}}</small>
+          <h5 class="card-title mb-4">{{item.name}}</h5>
+          <p class="card-text"> Specie: 
+            <i [class]="getSpecieIcon(item.species)"></i>
+            {{item.species}}</p>
+          <p> Gender: 
+            <i [class]="getGenderIcon(item.gender)"></i>
+            {{item.gender}}
+          </p>
+          
+          <p> Status: 
+            <i [class]="getStatusIcon(item.status)"></i>
+            {{item.status}}
+          </p>
           <div class="card-column">
             <button class="btn btn-light" (click)="addFavorite($event, item)">
               <i [class]="item.isFavorite ? 'fas fa-heart text-danger' : 'far fa-heart'"></i>

@@ -12,9 +12,21 @@
                 <div class="header">
                     <h2> {{character.name}}</h2>
                   
-                    <h3 class="text-muted"><small>Specie:</small>{{character.species}} </h3>
-                    <h3 class="text-muted"><small>Gender:</small> {{character.gender}}</h3>
-                    <h4 class="text-muted"><small>Status:</small> {{character.status}} </h4>
+                    <h5> Specie: 
+                        <i [class]="getSpecieIcon(character.species)"></i>
+                        {{character.species}}
+                    </h5>
+
+                    <h5> Gender: 
+                        <i [class]="getGenderIcon(character.gender)"></i>
+                        {{character.gender}}
+                    </h5>
+                      
+                    <h5> Status: 
+                        <i [class]="getStatusIcon(character.status)"></i>
+                        {{character.status}}
+                    </h5>
+
                     <h5 class="text-muted">Origin: {{character.origin.name}}</h5>
                     <h5 class="text-muted">Type: {{character.type}}</h5>
                     

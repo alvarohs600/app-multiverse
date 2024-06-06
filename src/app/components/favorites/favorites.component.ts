@@ -43,8 +43,6 @@ export class FavoritesComponent implements OnInit {
   eliminarFavorito(character: Character) {
     this.service.removeFavorito(character).subscribe(
       () => {
-        console.log('Favorito eliminado exitosamente');
-       
         this.obtenerFavoritos();
       },
       error => {

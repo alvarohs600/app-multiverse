@@ -51,8 +51,40 @@ export class TarjetasComponent {
     let personajeId=character.id;
     this.router.navigate(['/characterDetails/', personajeId]);
    }
-
-  
+//metodo para poner un icono u otro dependiendo del status
+   getStatusIcon(status: string): string {
+    switch (status) {
+      case 'Alive':
+        return 'fas fa-circle text-success';
+      case 'Dead':
+        return 'fas fa-circle text-danger';
+      default:
+        return 'fas fa-circle text-secondary';
+    }
    
 }
-
+//metodo para poner un icono dependiendo del genero
+getGenderIcon(gender: string): string {
+  switch (gender) {
+    case 'Male':
+      return 'fas fa-mars';
+    case 'Female':
+      return 'fas fa-venus';
+    default:
+      return 'fas fa-question-circle';
+  }
+}
+//metodo para poner un icono dependiendo de su especie
+getSpecieIcon(specie: string): string {
+  switch (specie) {
+    case 'Human':
+      return 'fas fa-user';
+    case 'Alien':
+      return 'fa-brands fa-reddit-alien';
+    case 'Robot':
+      return 'fas fa-robot';
+    default:
+      return 'fas fa-question-circle';
+  }
+}
+}

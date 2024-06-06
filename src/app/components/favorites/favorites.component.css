@@ -1,8 +1,9 @@
 .title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
+  text-align: center; 
+  display: block; 
+  margin: 0 auto; 
+  color:#a560e5;
+}
   
   .remove-button,
   .details-button {

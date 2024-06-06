@@ -1,14 +1,22 @@
+<div>
+  @if(loading) {
+    <app-loading></app-loading>
+  }
+</div>
 
-@if(loading){
-  <app-loading></app-loading>
+<div class="row">
+  <div class="col">
+    <input #termino type="text" (keyup)="buscar(termino.value)"
+      placeholder="Search a character" class="form-control search-input m-4">
+  </div>
+</div>
+
+@if(notFound) {
+  <h2>No encontrado</h2>
 }
 
+<app-tarjetas [items]="resulBusqueda.length ? resulBusqueda : resultados"></app-tarjetas>
 
-
-<app-tarjetas [items]="resultados"></app-tarjetas>
-
-@if(showGoUpButton){
-
+@if(showGoUpButton) {
   <button (click)="scrollTop()" class="goUp">Up</button>
 }
-

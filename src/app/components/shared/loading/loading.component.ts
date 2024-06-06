@@ -9,4 +9,14 @@ import { Component } from '@angular/core';
 })
 export class LoadingComponent {
 
+  ngOnInit(): void {
+    
+  }
+
+  showAlertAfterDelay(): void {
+    setTimeout(() => {
+      alert('There isn´t any characters');
+    }, 2000);
+  }
+
 }
