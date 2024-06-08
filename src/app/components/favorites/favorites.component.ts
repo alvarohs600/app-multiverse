@@ -4,12 +4,15 @@ import { RickMortyService } from '../shared/services/rick-morty.service';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Character } from '../interfaces/character.interface';
-import { Route, Router } from '@angular/router';
+import {  Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+
+
 
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [ CommonModule,
+  imports: [ CommonModule
 
   ],
   templateUrl: './favorites.component.html',
@@ -22,7 +25,8 @@ export class FavoritesComponent implements OnInit {
 
   constructor(
     private service : RickMortyService,
-    private router : Router
+    private router : Router,
+    public dialog: MatDialog,
   ){}
 
   ngOnInit(): void {
@@ -54,6 +58,7 @@ export class FavoritesComponent implements OnInit {
     let personajeId=character.id;
     this.router.navigate(['/characterDetails/', personajeId]);
    }
+
 
 
 }

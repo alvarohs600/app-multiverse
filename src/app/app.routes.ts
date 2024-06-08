@@ -9,6 +9,7 @@ import { RegistroComponent } from './components/auth/registro/registro.component
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { loginGuardGuard } from './components/guards/login-guard.guard';
+import { QuizComponent } from './components/quiz/quiz.component';
 
 
 
@@ -17,6 +18,7 @@ export const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: '/login' },
   { path: 'home', component: HomeComponent, canActivate: [loginGuardGuard] },
   { path: 'favorites', component: FavoritesComponent, canActivate: [loginGuardGuard] },
+  { path: 'quiz', component: QuizComponent, canActivate: [loginGuardGuard] },
   { path: 'locations', component: LocationsComponent, canActivate: [loginGuardGuard] },
   { path: 'episodes', component: EpisodesComponent, canActivate: [loginGuardGuard] },
   { path: 'about', component: AboutComponent, canActivate: [loginGuardGuard] },

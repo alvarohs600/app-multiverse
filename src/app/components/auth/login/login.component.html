@@ -1,11 +1,6 @@
+<div class="fondo">
 
 
-@if (error) {
-    <div class="alert alert-danger animated fadeIn">
-        <h3> Error</h3>
-        <p>{{errorMensaje}}</p>
-    </div>
-    }
     <div class="letras" >
         <img src="../../../assets/img/Multiverse.gif" alt="Mi logo">
       </div>
@@ -35,3 +30,10 @@
       <button type="submit" class="btn btn-primary" [disabled]="formReg.invalid">Login</button>
     </form>
   </div>
+  @if (error) {
+    <div class="alert alert-danger animated fadeIn" style="width: 50%; margin: 0 auto;">
+        <h3> Error</h3>
+        <p>{{errorMensage}}</p>
+    </div>
+    }
+</div>

@@ -1,10 +1,11 @@
+<div class="fondo">
 @if (error) {
     <div class="alert alert-danger animated fadeIn">
       <h3>Error</h3>
       <p>{{errorMensaje}}</p>
     </div>
   }
-  <div class="letras">
+  <div class="letras" >
     <img src="../../../assets/img/Multiverse.gif" alt="Mi logo">
   </div>
   <div class="registro-container mt-5">
@@ -40,3 +41,4 @@
       <button type="submit" class="btn btn-primary" [disabled]="formReg.invalid">Check in</button>
     </form>
   </div>
+</div>

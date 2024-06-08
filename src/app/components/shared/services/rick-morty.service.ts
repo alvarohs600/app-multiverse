@@ -1,8 +1,8 @@
 import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword,signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
-import { Firestore, addDoc, arrayRemove, arrayUnion, collection, collectionData, deleteDoc, doc, getDoc, setDoc, updateDoc } from '@angular/fire/firestore';
-import { ActivatedRouteSnapshot, Router } from '@angular/router';
+import {Firestore, arrayRemove, arrayUnion, collection, doc, getDoc,getDocs,setDoc, updateDoc } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { Observable, from, of } from 'rxjs';
 
 import { map, switchMap } from 'rxjs/operators';
@@ -19,13 +19,14 @@ private loggedIn: boolean= false;
      private http: HttpClient,
      private router : Router,
      private firestore : Firestore,
-     private auth: Auth) {}
+     private auth: Auth) {
+     }
 
   
 
-  //--------------------Metodos de Autenticación Firebase-----------------------------------
+  //--------------------Métodos de Autenticación Firebase-----------------------------------
 
-  //registrar usuario y crear documento en Firestore
+  //método para registrar usuario y crear documento en Firestore
   registrar(email:string, password: string, nombre: string) {
     return from(createUserWithEmailAndPassword(this.auth, email, password)).pipe(
       switchMap((userCredential) => {
@@ -42,24 +43,25 @@ private loggedIn: boolean= false;
       })
     );
   }
-  //metodo para hacer login
+  //método para hacer login
   login({email, password} : any){
     this.loggedIn=true;
     return signInWithEmailAndPassword( this.auth, email, password);
   }
-  //metodo para hacer logout
+  //método para hacer logout
   logOut(){
     this.loggedIn=false;
     return signOut(this.auth);
   }
-  //metodo para comprobar si un usuario esta logeado
+  //método para comprobar si un usuario esta logeado
   isLoggedIn():boolean{
     return this.loggedIn;
   }
 
+
  //----------------------------- metodos para la bbdd firestore------------------------------------------------------------------------
 
-  // Agregar favorito al documento del usuario
+  //método para agregar favorito al documento del usuario
   addFavorito(character: Character) {
     const user = this.auth.currentUser;
     if (!user) {
@@ -70,7 +72,7 @@ private loggedIn: boolean= false;
   }
 
 
-  // Eliminar favorito del documento del usuario
+  //método para eliminar favorito del documento del usuario
   removeFavorito(character: Character) {
     const user = this.auth.currentUser;
     if (!user) {
@@ -80,7 +82,7 @@ private loggedIn: boolean= false;
     return from(updateDoc(userDocRef, { favoritos: arrayRemove(character) }));
   }
 
-// Obtener todos los favoritos del usuario
+// método para obtener todos los favoritos del usuario
 getFavoritos() {
   const user = this.auth.currentUser;
   if (!user) {
@@ -100,36 +102,47 @@ getFavoritos() {
 }
 
 
-   //-------------------------------------Metodos para el consumo de API--------------------------------------------------------
+
+
+
+
+
+
+
+
+
+   //-------------------------------------Métodos para el consumo de API--------------------------------------------------------
+
+   
+   //método para guardar la query y pasarle el resto de la consulta 
   getQuery( query : string ) {
     const url=`https://rickandmortyapi.com/api/${ query }`;
    return this.http.get(url);
   }
-
+  //método para obtener todos los personajes de la API
   getPersonajes(){
     return this.getQuery('character/');
   }
-
+  //método para filtrar los personajes por el termino escrito
   searchPersonaje(termino: string, page =1){
     return this.getQuery(`character/?name=${termino}&page=${page}`)
     .pipe( map( datos=> datos));
   }
-
+  
+  //método para obtener las localizaciones de la aPI
   getLocations(){
     return this.getQuery('location/');
 
   };
-
+  //método para obtener un personaje por su id
   getCharacterDetails(id : string){
     return this.getQuery(`character/${id}`);
   };
-
-  
-
+  //método para obtener los episodios de la API
   getEpisodes(){
     return this.getQuery('episode');
   }
-
+  //método para obtener los episodios por sus ids.
   getSesion(ids: number [] ){
     
     return this.getQuery(`episode/${ids}`)

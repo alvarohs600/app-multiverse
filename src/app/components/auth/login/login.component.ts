@@ -25,7 +25,7 @@ import { Usuario } from '../../../model/usuario.model';
 export class LoginComponent implements OnInit {
   error: boolean | undefined;
   formReg: FormGroup;
-  errorMensaje: string = '';
+  errorMensage: string = '';
   usuario: Usuario = new Usuario;
   variable : boolean = false;
   
@@ -48,27 +48,37 @@ export class LoginComponent implements OnInit {
    
   }
     
-   //metoo que se lanza cuando enviamos el formulario
+   //método que se lanza cuando enviamos el formulario
     onSubmit(){
       if(this.formReg.valid){
         this.service.login(this.formReg.value)
           .then(resp=>{
-            console.log(resp);
             this.router.navigate(['/home']);
           })
           .catch(errorServ=>{
             this.error=true;
-            this.errorMensaje= errorServ;
+            this.showError(errorServ);
           });
-      }else {
-      console.log('Formulario invalido');
-    }
+      }
   
     }
 
     redirectToHome() {
       this.router.navigate(['/home']); // Redirige a la página de inicio (home)
     }
+      //metodo para que el error desaparezca
+    showError(message: string) {
+      this.error = true;
+      this.errorMensage = message;
+  
+      
+      setTimeout(() => {
+        this.error = false;
+        this.errorMensage = '';
+      }, 2000);
+    }
+
+ 
 
   
   

@@ -7,7 +7,6 @@ import { RickMortyService } from './components/shared/services/rick-morty.servic
 
 
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -18,10 +17,8 @@ import { RickMortyService } from './components/shared/services/rick-morty.servic
     NavbarComponent,
     AsyncPipe,
     RouterLinkActive,
-    
-  
-  ],
-    
+   
+  ], 
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -38,9 +35,6 @@ export class AppComponent implements OnInit {
         this.checkRoute(event.url)
       }
     })
-
- 
-    
   }
   ngOnInit() {
    
@@ -49,9 +43,6 @@ export class AppComponent implements OnInit {
   
   //metodo para verificar ruta actual y saber si el usuario esta loggeado o no.
   checkRoute(url: string): void {
-    console.log(url)
-    console.log(this.service.isLoggedIn());
-    console.log( ((url != '/login' && url != '/registro') && this.service.isLoggedIn() ));
     this.showNavbar = ((url != '/' && url != '/registro') && this.service.isLoggedIn() );
   }
 
