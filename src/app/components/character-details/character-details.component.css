@@ -1,0 +1,12 @@
+.card img{
+    opacity: 1;
+}
+.small-card {
+    width: 100px;  
+    height: 1500px; 
+  }
+  
+  .small-card img {
+    max-width: 100%;
+    height: auto;
+  }

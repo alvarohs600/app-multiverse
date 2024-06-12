@@ -1,6 +1,6 @@
 
 <div class="row justify-content-center mt-3">
-    <div class="col-xs-12 col-sm-6 col-md-6 justify-content-center">
+    <div class="col-xs-12 col-sm-8 col-md-6 justify-content-center">
         <div class="card ">
             <div class="image">
                 <img [src]="character.image"
@@ -10,7 +10,7 @@
             </div>
             <div class="card-inner">
                 <div class="header">
-                    <h2> {{character.name}}</h2>
+                    <h2 class="text-center"> {{character.name}}</h2>
                   
                     <h5> Specie: 
                         <i [class]="getSpecieIcon(character.species)"></i>
@@ -32,12 +32,25 @@
                     
                     
                     <h5 class="text-muted">Last know location: {{character.location.name}}</h5>
-                    <h5 class="text-muted"> {{character.name}} appears in {{character.episode.length}} episodes</h5>
-                    <small class="text-muted">{{character.created | date}}</small>
+                    <h5 class="text-muted"> {{character.name}} appears in {{character.episode.length}} episodes.</h5>
+
+                   
+                   
+                    <div class="card-column">
+                        <span [innerHTML]="getStarsIcon(character.episode.length)"></span>
+                      </div>
+                      <small class="text-muted">{{character.created | date}}</small>
                     <br>
+                    <div class="card-column">
+                        <button class="btn btn-light" (click)="addFavorite($event, character)">
+                          <i [class]="character.isFavorite ? 'fas fa-heart text-danger' : 'far fa-heart'"></i>
+                        </button>
+                        
+                      </div>
                     <button (click)="goBack()" class="btn btn-dark btn-lg mt-3 w-100">
                         Back
                     </button>
+                    
                 </div>
             </div>
         </div>

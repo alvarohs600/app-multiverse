@@ -9,7 +9,8 @@ import { RegistroComponent } from './components/auth/registro/registro.component
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { loginGuardGuard } from './components/guards/login-guard.guard';
-import { QuizComponent } from './components/quiz/quiz.component';
+import { CharactersComponent } from './components/characters/characters.component';
+import { LocationDetailsComponent } from './components/location-details/location-details.component';
 
 
 
@@ -17,12 +18,14 @@ export const routes: Routes = [
 
     { path: '', pathMatch: 'full', redirectTo: '/login' },
   { path: 'home', component: HomeComponent, canActivate: [loginGuardGuard] },
+  { path: 'characters', component: CharactersComponent, canActivate: [loginGuardGuard] },
   { path: 'favorites', component: FavoritesComponent, canActivate: [loginGuardGuard] },
-  { path: 'quiz', component: QuizComponent, canActivate: [loginGuardGuard] },
   { path: 'locations', component: LocationsComponent, canActivate: [loginGuardGuard] },
   { path: 'episodes', component: EpisodesComponent, canActivate: [loginGuardGuard] },
   { path: 'about', component: AboutComponent, canActivate: [loginGuardGuard] },
   { path: 'characterDetails/:id', component: CharacterDetailsComponent, canActivate: [loginGuardGuard] },
+  { path: 'not-found', component: NotFoundComponent},
+  { path: 'locationDetails/:id', component: LocationDetailsComponent, canActivate: [loginGuardGuard] },
   { path: 'not-found', component: NotFoundComponent},
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },

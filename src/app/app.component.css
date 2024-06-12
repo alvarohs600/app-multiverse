@@ -1,7 +1,7 @@
 .heart-button {
     position: absolute;
-    bottom: 10px; /* Ajusta el valor según la distancia deseada desde la parte inferior */
-    right: 10px; /* Ajusta el valor según la distancia deseada desde la parte derecha */
+    bottom: 10px; 
+    right: 10px; 
     background: none;
     border: none;
     color: red;

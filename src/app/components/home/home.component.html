@@ -1,22 +1,37 @@
-<div>
-  @if(loading) {
-    <app-loading></app-loading>
-  }
-</div>
-
-<div class="row">
-  <div class="col">
-    <input #termino type="text" (keyup)="buscar(termino.value)"
-      placeholder="Search a character" class="form-control search-input m-4">
+<body>
+  <div class="container mt-5">
+      <h1 class="text-center mb-5">Welcome to the multiverse Rick and Morty.</h1>
+      <div class="row">
+          <div class="col-md-4">
+              <div class="card">
+                  <img src="../../../assets/img/planeta5.jpg" (click)="goLocations()" class="card-img-top" alt="Imagen 1">
+                  <div class="card-body">
+                      <h5 class="card-title text-center" >Locations</h5>
+                      <p class="card-text">Enter the wonderful multiverse and explore in detail the hundreds of locations with all the facts and characters of the famous Rick and Morty series.</p>
+                      
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="card">
+                  <img src="../../../assets/img/episodesH.jfif" (click)="goEpisodes()"  class="card-img-top" alt="Imagen 2">
+                  <div class="card-body">
+                      <h5 class="card-title text-center">Episodes</h5>
+                      <p class="card-text">Learn more about the seasons of your favorite series, find all the episodes and enjoy the trailers of the craziest series in history.</p>
+                     
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="card">
+                  <img src="../../../assets/img/charH.jfif" (click)="goCharacters()"  class="card-img-top" alt="Imagen 3">
+                  <div class="card-body">
+                      <h5 class="card-title text-center">Characters</h5>
+                      <p class="card-text">Find your favorite characters in our multiverse, meet the more than 800 characters available and learn all about them,</p>
+                      
+                 
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
-</div>
-
-@if(notFound) {
-  <h2>No encontrado</h2>
-}
-
-<app-tarjetas [items]="resulBusqueda.length ? resulBusqueda : resultados"></app-tarjetas>
-
-@if(showGoUpButton) {
-  <button (click)="scrollTop()" class="goUp">Up</button>
-}

@@ -1,7 +1,7 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { RickMortyService } from '../shared/services/rick-morty.service';
-import { Observable } from 'rxjs';
+
 import { CommonModule } from '@angular/common';
 import { Character } from '../interfaces/character.interface';
 import {  Router } from '@angular/router';
@@ -58,6 +58,8 @@ export class FavoritesComponent implements OnInit {
     let personajeId=character.id;
     this.router.navigate(['/characterDetails/', personajeId]);
    }
+
+  
 
 
 

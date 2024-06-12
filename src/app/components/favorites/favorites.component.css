@@ -50,3 +50,6 @@
   .button-container button {
     margin: 0 5px; /* Espacio entre los botones */
   }
+  .card-img-top{
+    opacity:1;
+  }

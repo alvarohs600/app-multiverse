@@ -1,0 +1,29 @@
+<div class="container d-flex flex-column align-items-center mt-5" id="principal">
+    <div class="card" style="width: 30rem;">
+      <img [src]="locationImage" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h2 class="card-title">{{planeta.name}}</h2>
+        <h5 class="card-text">Type: {{planeta.type}}</h5>
+        <h5 class="card-text">Dimension: {{planeta.dimension}}</h5>
+        <p class="card-text">In {{planeta.name}} appears {{planeta.residents.length}} characters:</p>
+        <div>
+          <button (click)="goBack()" class="btn btn-dark btn-lg mt-3 w-100">Back</button>
+        </div>
+      </div>
+    </div>
+  
+    <div class="container mt-4 scroll-container" style="max-height: 400px; overflow-y: auto; margin-bottom: 10px;">
+      <div id="list-example" class="list-group"></div>
+      <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example d-flex flex-row" tabindex="10">
+        <div *ngFor="let c of planeta.residentsData" class="resident-card" >
+          <img [src]="c.image" alt="{{c.name}}" class="resident-img" (click)="viewCharacterDetails(c.id)">
+          <h4 id="list-item-{{c.name}}">{{c.name}}</h4>
+          <h4>
+            <i [class]="getStatusIcon(c.status)"></i>
+            {{c.status}}
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  

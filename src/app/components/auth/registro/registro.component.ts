@@ -69,10 +69,23 @@ constructor(
       },
       error: (error) => {
         console.error('Error al registrar usuario: ', error);
-        //manejo de errores para mostrar mensajes en la UI
+        this.error=true;
+        this.showError(error);
+
+        
       }
     });
   }
+}
+showError(message: string) {
+  this.error = true;
+  this.errorMensaje = message;
+
+  
+  setTimeout(() => {
+    this.error = false;
+    this.errorMensaje = '';
+  }, 2000);
 }
 
 }

@@ -21,6 +21,11 @@
             <button class="btn btn-light" (click)="addFavorite($event, item)">
               <i [class]="item.isFavorite ? 'fas fa-heart text-danger' : 'far fa-heart'"></i>
             </button>
+            
+          </div>
+
+          <div class="card-column">
+            <span [innerHTML]="getStarsIcon(item.episode.length)"></span>
           </div>
         </div>
       </div>

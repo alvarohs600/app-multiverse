@@ -34,10 +34,10 @@ export class TarjetasComponent {
   ){}
 
   addFavorite(event: Event, character: Character) {
-    event.stopPropagation(); // Evita que el clic en el botón dispare también el clic en la tarjeta
+    event.stopPropagation(); 
     this.rickyMortyService.addFavorito(character).subscribe({
       next: () => {
-        character.isFavorite = true; // Actualiza el estado localmente
+        character.isFavorite = true; 
       },
       error: (error : any) => {
         console.error('Error al añadir a favoritos:', error);
@@ -85,6 +85,21 @@ getSpecieIcon(specie: string): string {
       return 'fas fa-robot';
     default:
       return 'fas fa-question-circle';
+  }
+}
+
+getStarsIcon(episodes: number) {
+  const star = '<i class="fa-solid fa-star" style="color: #FFD43B;"></i>';
+  if (episodes>1 && episodes<3) {
+    return star.repeat(2); 
+  } else if ( episodes>=3 && episodes <=40) {
+    return star.repeat(3); 
+  } else if (episodes >40 && episodes<45) {
+    return star.repeat(4); 
+  } else if (episodes > 50) {
+    return star.repeat(5); 
+  }else{
+    return  star; 
   }
 }
 }

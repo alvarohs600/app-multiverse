@@ -26,7 +26,7 @@ export class AboutComponent {
     ){
 
   }
-
+  //metodo para visualizar un componente u otro
   handlerClick(){
     this.details=!this.details;
 

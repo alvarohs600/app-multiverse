@@ -9,4 +9,5 @@ export interface Location{
     url: string;
     created: string;
     img?: string;
+    
 }

@@ -14,12 +14,16 @@ import { Character } from '../../interfaces/character.interface';
 })
 export class RickMortyService {
 private loggedIn: boolean= false;
+
   
   constructor(
      private http: HttpClient,
      private router : Router,
      private firestore : Firestore,
      private auth: Auth) {
+
+   
+      
      }
 
   
@@ -46,6 +50,7 @@ private loggedIn: boolean= false;
   //método para hacer login
   login({email, password} : any){
     this.loggedIn=true;
+    
     return signInWithEmailAndPassword( this.auth, email, password);
   }
   //método para hacer logout
@@ -67,6 +72,7 @@ private loggedIn: boolean= false;
     if (!user) {
       throw new Error('Usuario no autenticado');
     }
+    
     const userDocRef = doc(this.firestore, `usuarios/${user.uid}`);
     return from(updateDoc(userDocRef, { favoritos: arrayUnion(character) }));
   }
@@ -103,14 +109,6 @@ getFavoritos() {
 
 
 
-
-
-
-
-
-
-
-
    //-------------------------------------Métodos para el consumo de API--------------------------------------------------------
 
    
@@ -128,7 +126,22 @@ getFavoritos() {
     return this.getQuery(`character/?name=${termino}&page=${page}`)
     .pipe( map( datos=> datos));
   }
-  
+
+   //método para obtener todas las localizaciones
+   getAllLocations(page =1){
+    return this.getQuery(`location/?page=${page}`)
+    .pipe( map( datos=> datos));
+  }
+  //metodo para mostrar una localización por id
+  getLocationById(id:string){
+    return this.getQuery(`location/${id}`)
+  }
+  //método para obtener los personajes de las localizaciones
+  getCharacterLocations(url: string): Observable<any> {
+    return this.http.get(url);
+  }
+
+ 
   //método para obtener las localizaciones de la aPI
   getLocations(){
     return this.getQuery('location/');
@@ -146,6 +159,10 @@ getFavoritos() {
   getSesion(ids: number [] ){
     
     return this.getQuery(`episode/${ids}`)
+  }
+  //para obtener los characters por su url
+  getCharacterByUrl(url: string): Observable<any> {
+    return this.http.get(url);
   }
 
 

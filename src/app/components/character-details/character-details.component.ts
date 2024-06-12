@@ -3,6 +3,7 @@ import {ActivatedRoute, RouterLink, RouterLinkActive} from '@angular/router';
 import { RickMortyService } from '../shared/services/rick-morty.service';
 import{DatePipe, Location} from '@angular/common';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
+import { Character } from '../interfaces/character.interface';
 
 
 
@@ -19,6 +20,8 @@ import { NavbarComponent } from '../shared/navbar/navbar.component';
     
   ],
   templateUrl: './character-details.component.html',
+  styleUrl: './character-details.component.css'
+ 
 
 })
 export class CharacterDetailsComponent {
@@ -35,12 +38,23 @@ export class CharacterDetailsComponent {
       this.getCharacterDetails( params['id']);
     });
   }
+
+  addFavorite(event: Event, character: Character) {
+    event.stopPropagation(); // Evita que el clic en el botón dispare también el clic en la tarjeta
+    this.service.addFavorito(character).subscribe({
+      next: () => {
+        character.isFavorite = true; // Actualiza el estado localmente
+      },
+      error: (error : any) => {
+        console.error('Error al añadir a favoritos:', error);
+      }
+    });
+  }
   
 
   getCharacterDetails(id : string){
     this.service.getCharacterDetails( id )
         .subscribe( datos => {
-          console.log(datos);
           this.character=datos;
         });
   }
@@ -53,9 +67,9 @@ export class CharacterDetailsComponent {
 
   getGenderIcon(gender: string): string {
     switch (gender) {
-      case 'male':
+      case 'Male':
         return 'fas fa-mars';
-      case 'female':
+      case 'Female':
         return 'fas fa-venus';
       default:
         return 'fas fa-question-circle';
@@ -87,6 +101,20 @@ export class CharacterDetailsComponent {
         return 'fas fa-robot';
       default:
         return 'fas fa-question-circle';
+    }
+  }
+  getStarsIcon(episodes: number) {
+    const star = '<i class="fa-solid fa-star" style="color: #FFD43B;"></i>';
+    if (episodes>1 && episodes<3) {
+      return star.repeat(2); 
+    } else if ( episodes>=3 && episodes <=40) {
+      return star.repeat(3); 
+    } else if (episodes >40 && episodes<45) {
+      return star.repeat(4); 
+    } else if (episodes > 50) {
+      return star.repeat(5); 
+    }else{
+      return  star; 
     }
   }
 
